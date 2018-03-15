@@ -1,10 +1,14 @@
 const http = require('http');
 const fs = require('fs');
 const qs = require('querystring');
+const sqlite3 = require('sqlite3');
 const view = require('./view/view');
 const studentController = require('./controller/students');
 
 const PORT = 3000;
+
+// create our database
+var db = new sqlite3.Database('./data/roster.sqlite3');
 
 // create the template cache
 view.cacheTemplates();
