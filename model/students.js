@@ -61,9 +61,13 @@ function addStudent(student, callback) {
     callback(false, JSON.parse(JSON.stringify(sanitizedStudent)))
   });
   */
-  db.run("INSERT INTO students (name, eid, description) VALUES (`" +
-    sanitizedStudent.name + "`,`" +
-    sanitizedStudent.eid + "`,`" +
-    sanitizedStudent.description +
-   "`)");
+  db.run(
+    "INSERT INTO students (name, eid, description) VALUES (?,?,?);",
+    [
+      sanitizedStudent.name,
+      sanitizedStudent.eid,
+      sanitizedStudent.description
+    ],
+    callback
+  );
 }
